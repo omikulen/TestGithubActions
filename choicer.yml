@@ -1,0 +1,52 @@
+name: Selector
+
+on:
+  workflow_dispatch:
+    inputs:
+      choicer: #custom name
+        type: choice
+        description: Person to greet
+        required: true
+        default: Mona the Octocat
+        options: 
+          - Mona the Octocat
+          - Alex
+          - Denys
+      
+      stringer: 
+        type: string # default type
+        description: Just some string
+        required: true
+        default: Hello
+      
+      booleaner:
+        type: boolean
+        description: 42?
+        required: true
+        default: true
+
+      environmenter: # what this is I have no idea, actually
+        type: environment
+        description: Environment variable
+        required: false
+        default: eh?
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greeting
+        uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: ${{ github.event.inputs.choicer }}
+
+      - name: Print string
+        run: echo "${{ github.event.inputs.stringer }} world"  
+
+      - name: Answer question # also learned about if-else in bash
+        run: if ${{ github.event.inputs.booleaner }}; then echo "Indeed, I see you are a man of knowledge like myself"; else echo "You fool!"; fi
+
+      - name: Print environment variable
+        run: echo "${{ github.event.inputs.environmenter }}"
+
+      
