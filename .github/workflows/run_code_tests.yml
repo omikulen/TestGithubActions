@@ -77,7 +77,7 @@ jobs:
             commit_options: '--no-verify --signoff'
 
             # Optional glob pattern of files which should be added to the commit
-            file_pattern: python_testing_files\*.py
+            file_pattern: python_testing_files/*.py
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
