@@ -1,0 +1,5 @@
+mypy
+black
+virtualenv
+pytest
+pytest-mock
