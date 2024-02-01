@@ -1,6 +1,9 @@
 # The name of the workflow, to be displayed in the GitHub/Actions UI
 name: Custom workflow
 
+# This is just the name displayed in the history of runs, instead of the commit title
+run-name: Testing custom workflow on ${{ github.sha }}
+
 ### REQUIRED
 # Set up what actions trigger execution of this workflow
 on:  

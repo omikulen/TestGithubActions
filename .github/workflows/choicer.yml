@@ -42,12 +42,23 @@ jobs:
         with:
           who-to-greet: ${{ github.event.inputs.choicer }}
 
+  world:
+    needs: greet
+    runs-on: ubuntu-latest
+    steps:
       - name: Print string
         run: echo "${{ github.event.inputs.stringer }} world"  
 
+  question:
+    needs: [greet, world]
+    runs-on: ubuntu-latest
+    steps:
       - name: Answer question # also learned about if-else in bash
         run: if [ ${{ github.event.inputs.booleaner }} = true ]; then echo "Indeed, I see you are a man of knowledge like myself"; else echo "You fool!"; fi
 
+  # env:
+  #   runs-on: ubuntu-latest
+  #   steps:
       # - name: Print environment variable
       #   run: echo "${{ github.event.inputs.environmenter }}"
 
