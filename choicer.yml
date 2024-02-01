@@ -1,4 +1,6 @@
-name: Selector
+name: Choicer
+
+run-name: Testing choicer 🚀 by ${{ github.actor }}
 
 on:
   workflow_dispatch:
@@ -25,11 +27,11 @@ on:
         required: true
         default: true
 
-      environmenter: # what this is I have no idea, actually
-        type: environment
-        description: Environment variable
-        required: false
-        default: eh?
+      # environmenter: # what this is I have no idea, actually
+      #   type: environment
+      #   description: Environment variable
+      #   required: false
+      #   default: eh?
 
 jobs:
   greet:
@@ -44,9 +46,9 @@ jobs:
         run: echo "${{ github.event.inputs.stringer }} world"  
 
       - name: Answer question # also learned about if-else in bash
-        run: if ${{ github.event.inputs.booleaner }}; then echo "Indeed, I see you are a man of knowledge like myself"; else echo "You fool!"; fi
+        run: if [ ${{ github.event.inputs.booleaner }} = true ]; then echo "Indeed, I see you are a man of knowledge like myself"; else echo "You fool!"; fi
 
-      - name: Print environment variable
-        run: echo "${{ github.event.inputs.environmenter }}"
+      # - name: Print environment variable
+      #   run: echo "${{ github.event.inputs.environmenter }}"
 
       
