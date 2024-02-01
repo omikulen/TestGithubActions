@@ -1,0 +1,58 @@
+# The name of the workflow, to be displayed in the GitHub/Actions UI
+name: Custom workflow
+
+### REQUIRED
+# Set up what actions trigger execution of this workflow
+on:  
+    # Trigger the workflow on push or pull request to the master branch
+    push:
+        # branches: # if want to trigger on specific branches
+        # - master
+    pull_request:
+        # branches: # if want to trigger on specific branches
+        # - master
+
+    # be able to trigger the workflow manually from the Actions UI
+    workflow_dispatch:
+
+
+# set up what permissions the runner need to have
+# permissions:
+    # completely separate story
+
+# also too difficult
+# concurrency:
+
+### REQUIRED
+# Set up the jobs that will be executed as part of this workflow
+jobs:
+    
+    # each job has its own name
+    first-job:
+        # OS to run the job on
+        runs-on: ubuntu-latest 
+
+        # actual content of the job. Consist of steps (individual actions)
+        steps: 
+            # each step can have a name, but it's optional
+            - name: All options
+              run: echo "User name is ${{ github.actor }}"
+              shell: bash # default is bash
+              working-directory: ./ # default is root
+
+            - run: echo "Illustration of how to access all available data"
+            - run: echo "The action is ${{ github.action }}"
+            - run: echo "The event name is ${{ github.event_name }}"
+            - run: echo "Repository is ${{ github.event_path }}"
+            - run: echo "Branch is ${{ github.repository }}"
+            - run: echo "The current commit is ${{ github.sha }}"
+            - run: echo "Workflow is ${{ github.workflow }}"
+            - run: echo "I am currently in the ${{ github.workspace }} directory"
+            - run: | # the vertical line is a YAML syntax to allow multiline strings
+                echo "The lists of files in the runner workspace are:"
+                ls -a ${{ github.workspace }}
+            - run: echo "The current time is $(date)"
+
+            
+
+
