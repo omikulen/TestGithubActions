@@ -1,6 +1,3 @@
-import mypy
-import black
-import virtualenv
 from pytest import raises
 
 

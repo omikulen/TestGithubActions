@@ -68,16 +68,16 @@ jobs:
           pytest python_testing_files 
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5 # git auto commit action, nothing else to add
         with:
-            commit_message: Apply automatic changes
+            commit_message: Automatic formatting
             branch: ${{ github.event.inputs.branch }} 
 
 
             # Optional glob pattern of files which should be added to the commit
             file_pattern: python_testing_files/*.py
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # env:  # not required anytmore for this action
+        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       
     
