@@ -105,7 +105,6 @@ jobs:
             file_pattern: python_testing_files/*.py
         # env:  # not required anytmore for this action
         #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-jobs:
   create_artifacts:
     runs-on: ubuntu-latest
     steps:
