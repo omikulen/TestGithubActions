@@ -88,7 +88,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: coverage
-          path: python_testing_files/coverage.xml
+          path: python_testing_files
       
       - name: Print content of the coverage file
         run: |
