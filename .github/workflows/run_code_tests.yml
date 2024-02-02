@@ -105,7 +105,14 @@ jobs:
             file_pattern: python_testing_files/*.py
         # env:  # not required anytmore for this action
         #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+  smallArigact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create an artifact
+        run: |
+          echo "This is a small artifact" > small_artifact.txt
+          makdir ./skipperArts
+          echo "This is another small artifact" > ./skipperArts/small_artifact.txt             
       
     
 
