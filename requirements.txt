@@ -4,3 +4,4 @@ black
 # testing
 pytest
 pytest-mock
+pytest-cov
