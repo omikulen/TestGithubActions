@@ -63,9 +63,34 @@ jobs:
         run: |
           black python_testing_files
 
-      - name: Run tests ### once again, to check if formatting didn't break anything
+      - name: Run tests ### once again, to check if formatting didn't break anything. Store coverage
+        run: | 
+          pytest python_testing_files --cov=python_testing_files --cov-report=xml
+
+      # test artifact upload
+      - name: Upload coverage as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: python_testing_files/coverage.xml
+          retention-days: 1
+
+      - name: Add coverage to gitignore
         run: |
-          pytest python_testing_files 
+          echo "python_testing_files/coverage.xml" >> .gitignore
+          rm -rf python_testing_files/coverage.xml
+          ls -lh python_testing_files
+
+      # for fun, download the artifact back
+      - name: Download coverage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage
+          path: python_testing_files/coverage.xml
+      
+      - name: Print content of the coverage file
+        run: |
+          cat python_testing_files/coverage.xml
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5 # git auto commit action, nothing else to add
