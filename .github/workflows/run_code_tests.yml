@@ -72,14 +72,16 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage
-          path: python_testing_files/coverage.xml
+          path: coverage.xml
           retention-days: 1
 
       - name: Add coverage to gitignore
         run: |
+          echo "coverage.xml" >> .gitignore
           echo "python_testing_files/coverage.xml" >> .gitignore
-          rm -rf python_testing_files/coverage.xml
-          ls -lh python_testing_files
+          ls -lh ./
+          ls -lh python_testing_files/
+          rm coverage.xml
 
       # for fun, download the artifact back
       - name: Download coverage artifact
