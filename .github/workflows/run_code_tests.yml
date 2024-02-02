@@ -105,31 +105,31 @@ jobs:
             file_pattern: python_testing_files/*.py
         # env:  # not required anytmore for this action
         #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  jobs:
-    create_artifacts:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Create small artifact
-          run: |
-            echo "This is a small artifact" > small_artifact.txt
-            mkdir ./skipperArts
-            echo "This is another small artifact" > ./skipperArts/small_artifact.txt
+jobs:
+  create_artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create small artifact
+        run: |
+          echo "This is a small artifact" > small_artifact.txt
+          mkdir ./skipperArts
+          echo "This is another small artifact" > ./skipperArts/small_artifact.txt
 
-        - name: Create system information artifact
-          run: |
-            echo "System Information:" > system_info.txt
-            echo "OS: $(uname -a)" >> system_info.txt
-            echo "CPU: $(lscpu)" >> system_info.txt
-            echo "Memory: $(free -h)" >> system_info.txt
+      - name: Create system information artifact
+        run: |
+          echo "System Information:" > system_info.txt
+          echo "OS: $(uname -a)" >> system_info.txt
+          echo "CPU: $(lscpu)" >> system_info.txt
+          echo "Memory: $(free -h)" >> system_info.txt
 
-        - name: Upload artifacts
-          uses: actions/upload-artifact@v4
-          with:
-            name: artifacts
-            path: |
-              small_artifact.txt
-              skipperArts/
-              system_info.txt
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts
+          path: |
+            small_artifact.txt
+            skipperArts/
+            system_info.txt
       
     
 
